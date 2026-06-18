@@ -342,9 +342,9 @@ class _TiuScreenState extends State<TiuScreen> {
         ),
         body: LayoutBuilder(
           builder: (context, constraints) {
-            final double avatarSize = 160.w;
-            final double avatarTop = 110.h;
-            final double cardTop = avatarTop + avatarSize + 30.h;
+            final double avatarSize = 180.w;
+            final double avatarTop = 170.h;
+            final double cardTop = avatarTop + avatarSize + 50.h;
 
             return Stack(
               clipBehavior: Clip.none,
@@ -360,10 +360,10 @@ class _TiuScreenState extends State<TiuScreen> {
 
                 // ===== TARJETA BLANCA FLOTANTE =====
                 Positioned(
-                  left: 32.w,
-                  right: 32.w,
+                  left: 24.w,
+                  right: 24.w,
                   top: cardTop,
-                  bottom: 65.h,
+                  bottom: 55.h,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -378,8 +378,8 @@ class _TiuScreenState extends State<TiuScreen> {
                     ),
                     padding: EdgeInsets.only(
                       top: 24.h,
-                      left: 16.w,
-                      right: 16.w,
+                      left: 20.w,
+                      right: 20.w,
                       bottom: 24.h,
                     ),
                     child: SingleChildScrollView(

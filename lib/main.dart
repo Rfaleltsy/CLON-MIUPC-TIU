@@ -334,11 +334,12 @@ class _TiuScreenState extends State<TiuScreen> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             final double totalHeight = constraints.maxHeight;
-            final double avatarSize = 180.0;
-            // Avatar flotando más centrado
-            final double avatarTop = totalHeight * 0.20;
-            // Tarjeta separada del avatar
-            final double cardTop = avatarTop + avatarSize + 50;
+            // Tamaño de avatar responsivo (máximo 180, mínimo 130)
+            final double avatarSize = (totalHeight * 0.24).clamp(130.0, 180.0);
+            // Posición dinámica según la altura
+            final double avatarTop = totalHeight * 0.14;
+            // Distancia de la tarjeta proporcional
+            final double cardTop = avatarTop + avatarSize + (totalHeight * 0.04);
 
             return Stack(
               clipBehavior: Clip.none,
@@ -357,7 +358,7 @@ class _TiuScreenState extends State<TiuScreen> {
                   left: 24,
                   right: 24,
                   top: cardTop,
-                  bottom: 55,
+                  bottom: totalHeight * 0.05, // Margen inferior dinámico
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,

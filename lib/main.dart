@@ -401,12 +401,12 @@ class _TiuScreenState extends State<TiuScreen> {
                           ),
                           SizedBox(height: 8.h),
                           // Código de alumno
-                          const Text(
+                          Text(
                             'Código de alumno:',
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontFamily: 'Godfrey',
-                              color: Color(0xFF535969),
+                              color: const Color(0xFF535969),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -423,12 +423,12 @@ class _TiuScreenState extends State<TiuScreen> {
                           ),
                           SizedBox(height: 10.h),
                           // ID Banner
-                          const Text(
+                          Text(
                             'ID Banner:',
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontFamily: 'Godfrey',
-                              color: Color(0xFF535969),
+                              color: const Color(0xFF535969),
                               fontWeight: FontWeight.w400,
                             ),
                           ),

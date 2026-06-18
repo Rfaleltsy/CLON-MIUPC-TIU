@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,15 +19,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'CLON MIUPC',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        // Usamos la fuente del sistema que más se asemeja al renderizado de la captura
-        fontFamily: 'sans-serif-condensed',
-      ),
-      home: const MenuScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'CLON MIUPC',
+          theme: ThemeData(
+            primarySwatch: Colors.red,
+            // Usamos la fuente del sistema que más se asemeja al renderizado de la captura
+            fontFamily: 'sans-serif-condensed',
+          ),
+          home: child,
+        );
+      },
+      child: const MenuScreen(),
     );
   }
 }
@@ -80,24 +89,24 @@ class _MenuScreenState extends State<MenuScreen> {
         backgroundColor: const Color(0xFF151B54),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+        padding: EdgeInsets.all(24.w),
         child: Column(
           children: [
             GestureDetector(
               onTap: _pickImage,
               child: CircleAvatar(
-                radius: 60,
+                radius: 60.w,
                 backgroundColor: const Color(0xFFE2E5EC),
                 backgroundImage: _imageBytes != null
                     ? MemoryImage(_imageBytes!)
                     : null,
                 child: _imageBytes == null
-                    ? const Icon(Icons.camera_alt, size: 40, color: Colors.grey)
+                    ? Icon(Icons.camera_alt, size: 40.w, color: Colors.grey)
                     : null,
               ),
             ),
             if (_imageBytes != null) ...[
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               TextButton.icon(
                 onPressed: () {
                   setState(() {
@@ -107,9 +116,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 icon: const Icon(Icons.delete_outline, color: Colors.red),
                 label: const Text('Remover foto', style: TextStyle(color: Colors.red)),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
             ] else ...[
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
             ],
             TextField(
               controller: _nameController,
@@ -117,24 +126,24 @@ class _MenuScreenState extends State<MenuScreen> {
                 labelText: 'Nombres',
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextField(
               controller: _lastNameController,
               decoration: const InputDecoration(
                 labelText: 'Apellidos',
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextField(
               controller: _codeController,
               decoration: const InputDecoration(labelText: 'Código de Alumno'),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextField(
               controller: _bannerController,
               decoration: const InputDecoration(labelText: 'ID Banner'),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             DropdownButtonFormField<String>(
               initialValue: _selectedCarrera,
               items:
@@ -157,7 +166,7 @@ class _MenuScreenState extends State<MenuScreen> {
               onChanged: (val) => setState(() => _selectedCarrera = val!),
               decoration: const InputDecoration(labelText: 'Carrera'),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             DropdownButtonFormField<String>(
               initialValue: _selectedCampus,
               items:
@@ -175,11 +184,11 @@ class _MenuScreenState extends State<MenuScreen> {
               onChanged: (val) => setState(() => _selectedCampus = val!),
               decoration: const InputDecoration(labelText: 'Campus'),
             ),
-            const SizedBox(height: 35),
+            SizedBox(height: 35.h),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF151B54),
-                minimumSize: const Size(double.infinity, 50),
+                minimumSize: Size(double.infinity, 50.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -211,10 +220,10 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 );
               },
-              child: const Text(
+              child: Text(
                 'Generar TIU Virtual',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
@@ -333,13 +342,9 @@ class _TiuScreenState extends State<TiuScreen> {
         ),
         body: LayoutBuilder(
           builder: (context, constraints) {
-            final double totalHeight = constraints.maxHeight;
-            // Tamaño de avatar responsivo (máximo 180, mínimo 130)
-            final double avatarSize = (totalHeight * 0.24).clamp(130.0, 180.0);
-            // Posición dinámica según la altura
-            final double avatarTop = totalHeight * 0.14;
-            // Distancia de la tarjeta proporcional
-            final double cardTop = avatarTop + avatarSize + (totalHeight * 0.04);
+            final double avatarSize = 160.w;
+            final double avatarTop = 110.h;
+            final double cardTop = avatarTop + avatarSize + 30.h;
 
             return Stack(
               clipBehavior: Clip.none,
@@ -355,10 +360,10 @@ class _TiuScreenState extends State<TiuScreen> {
 
                 // ===== TARJETA BLANCA FLOTANTE =====
                 Positioned(
-                  left: 32,
-                  right: 32,
+                  left: 32.w,
+                  right: 32.w,
                   top: cardTop,
-                  bottom: totalHeight * 0.08, // Más espacio libre abajo para que la tarjeta sea menos alta
+                  bottom: 65.h,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -371,11 +376,11 @@ class _TiuScreenState extends State<TiuScreen> {
                         ),
                       ],
                     ),
-                    padding: const EdgeInsets.only(
-                      top: 24,
-                      left: 16,
-                      right: 16,
-                      bottom: 24,
+                    padding: EdgeInsets.only(
+                      top: 24.h,
+                      left: 16.w,
+                      right: 16.w,
+                      bottom: 24.h,
                     ),
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
@@ -385,85 +390,85 @@ class _TiuScreenState extends State<TiuScreen> {
                           Text(
                             widget.name,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                            color: Color(0xFFFF1111),
-                            fontSize: 38,
+                            style: TextStyle(
+                            color: const Color(0xFFFF1111),
+                            fontSize: 38.sp,
                               fontFamily: 'SolanoGothicMVB',
                               fontWeight: FontWeight.w700,
                               height: 1.15,
                               letterSpacing: 0.5,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8.h),
                           // Código de alumno
                           const Text(
                             'Código de alumno:',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 13.sp,
                               fontFamily: 'Godfrey',
                               color: Color(0xFF535969),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 2.h),
                           Text(
                             widget.code,
-                            style: const TextStyle(
-                              fontSize: 21,
+                            style: TextStyle(
+                              fontSize: 21.sp,
                               fontFamily: 'Godfrey',
                               fontWeight: FontWeight.w800,
-                              color: Color(0xFF535969),
+                              color: const Color(0xFF535969),
                               height: 1.1,
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10.h),
                           // ID Banner
                           const Text(
                             'ID Banner:',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 13.sp,
                               fontFamily: 'Godfrey',
                               color: Color(0xFF535969),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 2.h),
                           Text(
                             widget.banner,
-                            style: const TextStyle(
-                              fontSize: 21,
+                            style: TextStyle(
+                              fontSize: 21.sp,
                               fontFamily: 'Godfrey',
                               fontWeight: FontWeight.w800,
-                              color: Color(0xFF535969),
+                              color: const Color(0xFF535969),
                               height: 1.1,
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12.h),
                           // Carrera
                           Text(
                             widget.carrera,
-                            style: const TextStyle(
-                              fontSize: 15,
+                            style: TextStyle(
+                              fontSize: 15.sp,
                               fontFamily: 'Godfrey',
                               fontWeight: FontWeight.w800,
-                              color: Color(0xFF535969),
+                              color: const Color(0xFF535969),
                               letterSpacing: 0.3,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          SizedBox(height: 6.h),
                           // Campus con ícono
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text('📍', style: TextStyle(fontSize: 14)),
-                              const SizedBox(width: 4),
+                              Text('📍', style: TextStyle(fontSize: 14.sp)),
+                              SizedBox(width: 4.w),
                               Text(
                                 widget.campus,
-                                style: const TextStyle(
-                                  fontSize: 13,
+                                style: TextStyle(
+                                  fontSize: 13.sp,
                                   fontFamily: 'Godfrey',
-                                  color: Color(0xFF535969),
+                                  color: const Color(0xFF535969),
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -477,17 +482,17 @@ class _TiuScreenState extends State<TiuScreen> {
 
                 // ===== RELOJ Y FECHA =====
                 Positioned(
-                  top: 20,
+                  top: 20.h,
                   left: 0,
                   right: 0,
                   child: Column(
                     children: [
                       // Caja del reloj
                       Container(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          top: 10,
+                        padding: EdgeInsets.only(
+                          left: 20.w,
+                          right: 20.w,
+                          top: 10.h,
                           bottom: 0,
                         ),
                         decoration: BoxDecoration(
@@ -498,8 +503,8 @@ class _TiuScreenState extends State<TiuScreen> {
                         ),
                         child: Text(
                           _timeString,
-                          style: const TextStyle(
-                            fontSize: 40,
+                          style: TextStyle(
+                            fontSize: 40.sp,
                             fontFamily: 'NimbusSans',
                             fontWeight: FontWeight.normal,
                             color: Colors.black,
@@ -507,14 +512,14 @@ class _TiuScreenState extends State<TiuScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 5),
+                      SizedBox(height: 5.h),
                       // Fecha
                       Text(
                         _dateString,
-                        style: const TextStyle(
-                          fontSize: 16,
+                        style: TextStyle(
+                          fontSize: 16.sp,
                           fontFamily: 'Godfrey',
-                          color: Color(0xFF535969),
+                          color: const Color(0xFF535969),
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -607,7 +612,7 @@ class _ImageCropScreenState extends State<ImageCropScreen> {
         foregroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: const Icon(Icons.check, color: Colors.green, size: 30),
+            icon: Icon(Icons.check, color: Colors.green, size: 30.w),
             onPressed: _cropImage,
           )
         ],
@@ -616,8 +621,8 @@ class _ImageCropScreenState extends State<ImageCropScreen> {
         child: RepaintBoundary(
           key: _globalKey,
           child: Container(
-            width: 300,
-            height: 300,
+            width: 300.w,
+            height: 300.w, // Using .w for both to maintain perfect circle
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.transparent,

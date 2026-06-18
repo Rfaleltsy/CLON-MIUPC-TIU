@@ -1,0 +1,50 @@
+name: clont_tiu
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^8.1.0
+  image_picker: ^1.1.2
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: SolanoGothicMVB
+      fonts:
+        - asset: assets/fonts/SolanoGothicMVB-Bold.ttf
+          weight: 700
+    - family: Godfrey
+      fonts:
+        - asset: assets/fonts/Godfrey-Regular.ttf
+          weight: 400
+    - family: TeeFranklin
+      fonts:
+        - asset: assets/fonts/Tee Franklin W01 Medium.ttf
+          weight: 500
+    - family: StandardCT
+      fonts:
+        - asset: assets/fonts/Standard CT Regular Condensed.ttf
+          weight: 400
+    - family: GothicA1
+      fonts:
+        - asset: assets/fonts/GothicA1-Medium.ttf
+          weight: 500
+    - family: NimbusSans
+      fonts:
+        - asset: assets/fonts/nimbus-sans-regular.otf
+          weight: 400

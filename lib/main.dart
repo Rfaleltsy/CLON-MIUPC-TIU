@@ -355,10 +355,10 @@ class _TiuScreenState extends State<TiuScreen> {
 
                 // ===== TARJETA BLANCA FLOTANTE =====
                 Positioned(
-                  left: 24,
-                  right: 24,
+                  left: 32,
+                  right: 32,
                   top: cardTop,
-                  bottom: totalHeight * 0.05, // Margen inferior dinámico
+                  bottom: totalHeight * 0.08, // Más espacio libre abajo para que la tarjeta sea menos alta
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -373,8 +373,8 @@ class _TiuScreenState extends State<TiuScreen> {
                     ),
                     padding: const EdgeInsets.only(
                       top: 24,
-                      left: 20,
-                      right: 20,
+                      left: 16,
+                      right: 16,
                       bottom: 24,
                     ),
                     child: SingleChildScrollView(

@@ -49,10 +49,10 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final _nameController = TextEditingController(text: "RAFAEL AUGUSTO");
-  final _lastNameController = TextEditingController(text: "TERRONES ALTAMIRANO");
-  final _codeController = TextEditingController(text: "20231F226");
-  final _bannerController = TextEditingController(text: "N04432887");
+  final _nameController = TextEditingController(text: "CARLOS ANDRÉS");
+  final _lastNameController = TextEditingController(text: "GARCÍA MENDOZA");
+  final _codeController = TextEditingController(text: "U202213579");
+  final _bannerController = TextEditingController(text: "N00456789");
   String _selectedCarrera = "INGENIERÍA DE SOFTWARE";
   String _selectedCampus = "Campus Monterrico";
   Uint8List? _imageBytes;

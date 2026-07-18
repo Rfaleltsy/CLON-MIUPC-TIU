@@ -41216,7 +41216,7 @@ return new A.on(b,"CLON MIUPC",A.tE(s,s,"sans-serif-condensed",B.mH,s),!1,s)},
 $S:434}
 A.yu.prototype={
 ah(){var s=$.an()
-return new A.D7(new A.pv(new A.cb("RAFAEL AUGUSTO",B.ez,B.b0),s),new A.pv(new A.cb("TERRONES ALTAMIRANO",B.ez,B.b0),s),new A.pv(new A.cb("20231F226",B.ez,B.b0),s),new A.pv(new A.cb("N04432887",B.ez,B.b0),s))}}
+return new A.D7(new A.pv(new A.cb("CARLOS ANDR\xc9S",B.ez,B.b0),s),new A.pv(new A.cb("GARC\xcdA MENDOZA",B.ez,B.b0),s),new A.pv(new A.cb("U202213579",B.ez,B.b0),s),new A.pv(new A.cb("N00456789",B.ez,B.b0),s))}}
 A.D7.prototype={
 pc(){var s=0,r=A.N(t.H),q,p=this,o,n,m,l,k,j
 var $async$pc=A.O(function(a,b){if(a===1)return A.K(b,r)
